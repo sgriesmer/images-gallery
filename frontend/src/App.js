@@ -13,8 +13,6 @@ function App() {
     console.log(word)
   };
 
-  console.log(word);
-
   return (
     <div className="App">
       <Header title="Images Gallery"/>
