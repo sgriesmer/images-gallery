@@ -28,6 +28,9 @@
       "plugin:prettier/recommended"
     ]
   },
+  "prettier": {
+    "singleQuote": true
+  },
   "browserslist": {
     "production": [
       ">0.2%",

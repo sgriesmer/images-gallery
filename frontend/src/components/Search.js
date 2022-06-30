@@ -1,6 +1,6 @@
-import React from "react";
-import FormImpl from "react-bootstrap/esm/Form";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import React from 'react';
+import FormImpl from 'react-bootstrap/esm/Form';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 const Search = ({ word, setWord, handleSubmit }) => {
   return (
