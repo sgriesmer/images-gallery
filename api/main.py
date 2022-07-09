@@ -1,4 +1,4 @@
-import os 
+import os
 import requests
 from flask import Flask, request
 from dotenv import load_dotenv
@@ -6,11 +6,11 @@ from flask_cors import CORS
 
 load_dotenv(dotenv_path="./.env.local")
 
-UNSPLASH_URL='https://api.unsplash.com/photos/random'
-UNSPLASH_KEY=os.environ.get("UNSPLASH_KEY","")
+UNSPLASH_URL = 'https://api.unsplash.com/photos/random'
+UNSPLASH_KEY = os.environ.get("UNSPLASH_KEY", "")
 
 if not UNSPLASH_KEY:
-  raise EnvironmentError("Please create .env.local file and insert UNSPLASH_KEY there")
+    raise EnvironmentError("Please create .env.local file and insert UNSPLASH_KEY there")
 
 app = Flask(__name__)
 
@@ -18,7 +18,8 @@ CORS(app)
 
 # Enable debug mode
 
-app.debug=True
+app.debug = True
+
 
 @app.route("/new-image")
 def new_image():
@@ -30,7 +31,7 @@ def new_image():
   params = {"query": word}
   response = requests.get(url=UNSPLASH_URL, headers=headers, params=params)
   data = response.json()
-  return data
+    return data
 
 if __name__ == "__main__":
-  app.run(host="0.0.0.0", port=5050)
+    app.run(host="0.0.0.0", port=5050)
