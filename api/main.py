@@ -36,7 +36,7 @@ def new_image():
   data = response.json()
   return data
 
-@app.route("/images", methods="GET,"POST"))
+@app.route("/images", methods=["GET","POST"])
 def images():
   if request.method == "GET":
     # read images from db
