@@ -45,7 +45,10 @@ def images():
   if request.method == "POST":
     # save image in db
     image = request.get_json()
-    return images_collection.insert_one(images)
+    image["_id"] = image.get("id")
+    result = images_collection.insert_one(image)
+    inserted_id = result.inserted_id
+    return {"inserted_id": inserted_id}
     
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5050)
