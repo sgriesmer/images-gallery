@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 
-const ImageCard = ({ image, deleteImage }) => {
+const ImageCard = ({ image, deleteImage, saveImage }) => {
   return (
     <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src={image.urls.small} />
