@@ -6,22 +6,23 @@ import Search from './components/Search';
 import ImageCard from './components/ImageCard';
 import { Container, Row, Col } from 'react-bootstrap';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:5050';
+const API_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:5051';
 
 function App() {
   const [word, setWord] = useState('');
   const [images, setImages] = useState([]);
 
-  const getSavedImages = async () => {
-    try {
-      const res = await axios.get(`${API_URL}/images`);
-      setImages(res.data || []);
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    async function getSavedImages() {
+      try {
+        const res = await axios.get(`${API_URL}/images`);
+        setImages(res.data || []);
+      } catch (error) {
+        console.log(error);
+      }
     }
-  };
-
-  useEffect(() => getSavedImages(), []);
+    getSavedImages();
+  }, []);
 
   console.log(images);
 
