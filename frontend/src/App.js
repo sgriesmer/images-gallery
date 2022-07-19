@@ -11,6 +11,8 @@ const API_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:5051';
 function App() {
   const [word, setWord] = useState('');
   const [images, setImages] = useState([]);
+  // const RCSB_URL =
+  //   'https://cdn.rcsb.org/images/structures/tq/7tqz/7tqz_chain-A.jpeg';
 
   useEffect(() => {
     async function getSavedImages() {
@@ -32,6 +34,9 @@ function App() {
 
     try {
       const res = await axios.get(`${API_URL}/new-image?query=${word}`);
+      // console.log('getting image from RCSB');
+      // const res = await axios.get(`${RCSB_URL}`);
+      // console.log(res.data);
       console.log('adding found image to the state');
       setImages([{ ...res.data, title: word }, ...images]);
     } catch (error) {
@@ -42,8 +47,17 @@ function App() {
     setWord('');
   };
 
-  const handleDeleteImage = (id) => {
-    setImages(images.filter((image) => image.id !== id));
+  const handleDeleteImage = async (id) => {
+    id.preventDefault();
+    console.log('sending delete request');
+    try {
+      const res = await axios.delete(`${API_URL}/images/${id}`);
+      if (res.data?.deleted_id) {
+        setImages(images.filter((image) => image.id !== id));
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleSaveImage = async (id) => {
