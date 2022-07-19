@@ -58,8 +58,7 @@ def image_delete(image_id):
       return {"error": "Image not found"}, 404
     elif not result:
       return {"error": "Image not deleted"}, 500
-    deleted_id = result.deleted_id
-    return {"deleted_id": deleted_id}
+    return {"deleted_id": image_id}
     
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5050)
